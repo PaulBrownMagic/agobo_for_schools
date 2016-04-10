@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=
+Terminal=false
+Name=line_follow.py
+Exec=sudo idle3 line_follow.py
+Type=Application
+Icon=starred-symbolic

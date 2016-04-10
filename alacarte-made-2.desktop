@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=
+Terminal=false
+Name=motor.py
+Exec=sudo idle3 motor.py
+Type=Application
+Icon=starred-symbolic

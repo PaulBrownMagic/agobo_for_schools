@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=
+Terminal=true
+Name=Robot Refresh
+Exec=./refresh.sh
+Type=Application
+Icon=emblem-synchronizing-symbolic

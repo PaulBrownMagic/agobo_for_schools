@@ -1,0 +1,8 @@
+[Desktop Entry]
+Comment=
+Terminal=false
+Name=lights.py
+Exec=sudo idle3 line_obstacle.py
+Type=Application
+Icon=starred-symbolic
+Name[en_GB]=line_obstacle.py
