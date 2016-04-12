@@ -20,16 +20,23 @@ if not is_running:
         return check_output(command).decode('utf-8').strip()
 
     def has_ip():
-        return len(get_output(["hostname", "-I"])) > 6 
+        ip = get_output(["hostname", "-I"])
+        if len(ip) > 6:
+            print("\nIP Address Aquired:", ip)
+        return len(ip) > 6
 
     def has_license():
-        return len(get_output(["cat", "/etc/vnc/licensekey"])) > 15
+        lic = get_output(["cat", "/etc/vnc/licensekey"])
+        if len(lic) > 15:
+            print("\nHas Valid License\n")
+        return len(lic) > 15
 
     def vncserver_started():
         if '0.pid' in get_output(["ls", ".vnc"]):
             process_name = get_output(['cat','.vnc/gui:0.pid'])
             ps_name = get_output(['ps', '-p', process_name, '-o', 'comm='])
             if 'vnc' in ps_name.lower():
+                print("\nVNCSERVER STARTED: vncserver :0\n")
                 return True
         return False
 
@@ -68,17 +75,18 @@ if not is_running:
 
     # Start VNC server -- Flash green
     call(["vncserver",":!"])
+    server_running = vncserver_started()
     for _ in range(16):
         green = not green
         GPIO.output(GREEN, green)
         sleep(0.05)
-    server_running = vncserver_started()
     while not server_running:
+        print("connection not made, retrying...\n")
         call(["vncserver",":!"])
         green = not green
         GPIO.output(GREEN, green)
-        sleep(0.1)
         server_running = vncserver_started()
+        sleep(0.1)
 
     GPIO.output(RED, 0)
     GPIO.output(GREEN, 1)
@@ -116,6 +124,7 @@ if not is_running:
                 sleep(dash)
             GPIO.output(RED, False)
             sleep(dot)
+    print("\nCONNECTION MADE, Viewer connected to server\n")
     sleep(1)
 
     # Exit
