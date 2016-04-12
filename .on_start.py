@@ -67,7 +67,8 @@ if not is_running:
         green = not green
         GPIO.output(RED, red)
         GPIO.output(GREEN, green)
-        call(["sudo","vnclicense","-add", "DAHR2-D2DSQ-BQ3A4-74SJV-KU3WA"])
+        print("Adding license...\n")
+        call(["sudo","vnclicense","-add", "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX"])  # You will need your own license key, they're free
         sleep(0.2)
 
     GPIO.output(RED, 0)
