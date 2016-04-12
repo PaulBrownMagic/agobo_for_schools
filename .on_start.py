@@ -3,10 +3,8 @@
 # File to ensure only one copy runs at a time, .profile can be called twice.
 with open('.running','r') as file:
     is_running = list(file)[0].strip() == 'True'
-    print(is_running)
 
 if not is_running:
-    print("Started")
     with open('.running', 'w') as file:
         file.write('True')
     import RPi.GPIO as GPIO
